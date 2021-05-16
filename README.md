@@ -1,6 +1,7 @@
 # calculator
 
 1. Create HTML, CSS and JavaScript files.
+
 2. GitHub. Clone down repo.
 
 3. Components of calculator:
