@@ -137,7 +137,7 @@ body {
 }
 
 .calculator__keys > * {
-  background-color: ;
+  background-color: white;
   padding: 1.5em 1em;
   position: relative;
   text-align: center;
@@ -164,4 +164,5 @@ body {
 .key--equal {
   grid-column: -2;
   grid-row: 1;
+  background-color: pink;
 }
