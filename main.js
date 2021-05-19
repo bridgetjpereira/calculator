@@ -253,14 +253,19 @@ calculate = (firstNumber, secondNumber, operator) => {
     // If we've clicked the minus button return the result of subracting the second number from the first one
   } else if (operator === "minus") {
     return firstNumber - secondNumber;
+    // If we've clicked the multiply button return the result of multiplying the 2 numbers
   } else if (operator === "multiply") {
     return firstNumber * secondNumber;
+    // If we've clicked the divide button return the result of dividing the 2 numbers
   } else if (operator === "divide") {
     return firstNumber / secondNumber;
   }
+  // If the operator doesn't match any of these just return the 2nd number
   return secondNumber;
 };
 
+// Function to reset calculator back to the start
+// Resets the calculator object back to it's default values
 resetCalculator = () => {
   calculator.displayValue = "0";
   calculator.firstNumber = null;
@@ -269,6 +274,7 @@ resetCalculator = () => {
   console.log(calculator);
 };
 
+// Function to update the calculator display
 updateDisplay = () => {
   //select the element with the class of 'calculator-screen'
   const display = document.querySelector(".calculator__screen");
