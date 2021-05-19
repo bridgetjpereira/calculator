@@ -131,10 +131,11 @@ NEW TEST!
 
 */
 
-// 1. Start by creating an object called calculator. Individual properties
-//do not interact with each other! Declared within object so you have
-//somewhere to store them when you change them. Default values.
-//Default display is 0. etc.
+// Create object Calculator with the following properties:
+// displayValue = The number that appears on the calculator screen (Default 0)
+// firstNumber = The first number inputted (Default null)
+// waitingForSecondNumber = If this is true, we have typed in operator and are about to start inputting the second number, otherwise it's false   Boolean (Default false)
+// operator = +-/*= (Default null)
 
 const calculator = {
   displayValue: 0,
@@ -143,43 +144,70 @@ const calculator = {
   operator: null,
 };
 
-//2. We need the '0' which is displayValue property to appear on the
-//screen at all times. Need to make a function to update the screen
-//display with the contents of displayValue.
+// Function inputDigit takes a paramter of digit
+// This function adds a number to the display
 
 inputDigit = (digit) => {
-  // Create variable displayValue = the displayValue of the calculator object
-  const displayValue = calculator.displayValue;
-  const waitingForSecondNumber = calculator.waitingForSecondNumber;
-  // If the current display value is 0, replace it with the value of the button clicked
-  if (waitingForSecondNumber === true) {
+  // Creating a variable currentDisplayValue which is equal to the current displayValue property of calculator
+  // This gets the current display value on the screen and puts it in a variable
+  const currentDisplayValue = calculator.displayValue;
+  // Creating a variable called waitingForSecondNumber which is equal to the current value of waitingForSecondNumber property of calculator
+  // This lets us know whether we're inputting the first or second number into the calculator and sets it in a variable
+  const currentWaitingForSecondNumber = calculator.waitingForSecondNumber;
+  // If we have typed an operator key
+  if (currentWaitingForSecondNumber === true) {
+    // Overwrites the current number on the screen
     calculator.displayValue = digit;
+    // Number typed, so no longer waiting for an second number
     calculator.waitingForSecondNumber = false;
-  } else {
-    if (displayValue === 0) {
+  }
+  // Not an operator typed so go here
+  else {
+    // If what's on screen is a 0
+    if (currentDisplayValue === 0) {
+      // Overwrites the current number on the screen
       calculator.displayValue = digit;
     } else {
-      calculator.displayValue = displayValue + digit;
+      // Otherwise take the current display value and append the number clicked
+      calculator.displayValue = currentDisplayValue + digit;
     }
   }
-
+  // This just prints the calculator object
   console.log(calculator);
 };
 
+// Function inputDecimal takes a paramater of point
+// This is for when someone clicks on a decimal point
 inputDecimal = (point) => {
+  // Conditional statement within a function
+  // If we've typed in an operator and we click the decimal point
   if (calculator.waitingForSecondNumber === true) {
-    calculator.displayValue = "0";
+    // We display the value 0.
+    calculator.displayValue = "0.";
+    // A number is now on screen, so no longer waiting for the second number
     calculator.waitingForSecondNumber = false;
+    // exit
     return;
   }
+
+  // If we have a 0 on screen, add a point and exit
+  // This is only for the first load of the page after a refresh.
+  if (calculator.displayValue === 0) {
+    calculator.displayValue = "0.";
+    return;
+  }
+
   //Scenario for when the displayValue property does not contain a decimal point
+  //This is to make sure we don't type 2 decimal points (numbers like this do not exist)
   if (!calculator.displayValue.includes(point)) {
     //Append the decimal point to display digits/operators
     calculator.displayValue += point;
   }
 };
 
-inputOperator = (nextOperator) => {
+// Function inputOperator which takes a parameter operatorClicked
+inputOperator = (operatorClicked) => {
+  //
   const firstNumber = calculator.firstNumber;
   const displayValue = calculator.displayValue;
   const operator = calculator.operator;
@@ -195,7 +223,7 @@ inputOperator = (nextOperator) => {
     calculator.firstNumber = result;
   }
   calculator.waitingForSecondNumber = true;
-  calculator.operator = nextOperator;
+  calculator.operator = operatorClicked;
   console.log(calculator);
 };
 
