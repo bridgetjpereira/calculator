@@ -207,30 +207,50 @@ inputDecimal = (point) => {
 
 // Function inputOperator which takes a parameter operatorClicked
 inputOperator = (operatorClicked) => {
-  //
-  const firstNumber = calculator.firstNumber;
-  const displayValue = calculator.displayValue;
-  const operator = calculator.operator;
-  const inputValue = parseFloat(displayValue);
+  // Declare several variables
+  // currentFirstNumber which is the current value of the calculator object firstNumber
+  const currentFirstNumber = calculator.firstNumber;
+  // This gets the current display value on the screen and puts it in a variable
+  const currentDisplayValue = calculator.displayValue;
+  // This gets if an operator is stored previously in the calculator object.
+  const currentOperator = calculator.operator;
+  // Converts the current display value to a floating point number (a number with decimal points even if they aren't shown)
+  const inputValue = parseFloat(currentDisplayValue);
 
-  if (firstNumber === null && !isNaN(inputValue)) {
+  // If the currentFirstNumber hasn't been set and inputValue isn't 0
+  if (currentFirstNumber === null && !isNaN(inputValue)) {
+    // set the firstNumber in the calculator object to the inputValue
     calculator.firstNumber = inputValue;
-  } else if (operator) {
-    console.log(firstNumber, inputValue, operator);
-    const result = calculate(firstNumber, inputValue, operator);
+    // if the current operator is not null
+  } else if (currentOperator) {
+    // Print out currentFirstNumber, inputValue and currentOperator to the console
+    console.log(currentFirstNumber, inputValue, currentOperator);
+    // Declaring a variable result setting it equal to the result of the function calculate.
+    // We give the function calculate the variables currentFirstNumber, inputValue and currentOperator
+    const result = calculate(currentFirstNumber, inputValue, currentOperator);
+    // Print out the result to the console
     console.log(result);
-    calculator.displayValue = String(result);
+    // Updating the display to the result
+    calculator.displayValue = result;
+    // Updating the firstNumber to the result
     calculator.firstNumber = result;
   }
+  // Tell the object we've clicked an operator
   calculator.waitingForSecondNumber = true;
+  // Tell the object which operator we've clicked
   calculator.operator = operatorClicked;
+  // Print out the calculator object
   console.log(calculator);
 };
 
+// A function to do maths on the numbers we've input
 calculate = (firstNumber, secondNumber, operator) => {
+  // Print out which operator we've clicked (what type of maths we'll do)
   console.log(operator);
+  // If we've clicked the plus button return the result of adding the 2 numbers
   if (operator === "add") {
     return firstNumber + secondNumber;
+    // If we've clicked the minus button return the result of subracting the second number from the first one
   } else if (operator === "minus") {
     return firstNumber - secondNumber;
   } else if (operator === "multiply") {
