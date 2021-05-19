@@ -340,12 +340,3 @@ keys.addEventListener("click", (event) => {
   inputDigit(target.value);
   updateDisplay();
 }); //if you get to the end and it hasn't matched any other button, input number pressed.
-
-//Decimal point
-
-//When decimal point is clicked, needs to append to whatever is displayed on the screen, unless
-//it already has a decimal point.
-
-//Handling operators
-
-//1. user hits an operator following entry of first number
