@@ -137,10 +137,6 @@ NEW TEST!
 // waitingForSecondNumber = If this is true, we have typed in operator and are about to start inputting the second number, otherwise it's false   Boolean (Default false)
 // operator = +-/*= (Default null)
 
-//const number = 058
-
-//parseInt(number, 10) // 58
-
 const calculator = {
   displayValue: 0,
   firstNumber: null,
